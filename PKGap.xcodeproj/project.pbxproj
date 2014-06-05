@@ -1,0 +1,295 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		D8080DE41940F68C00204797 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D8080DE31940F68C00204797 /* Foundation.framework */; };
+		D8080E071940F83A00204797 /* PKCDVPlugin.m in Sources */ = {isa = PBXBuildFile; fileRef = D8080DD81940F63200204797 /* PKCDVPlugin.m */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXCopyFilesBuildPhase section */
+		D8080DDE1940F68C00204797 /* CopyFiles */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "include/$(PRODUCT_NAME)";
+			dstSubfolderSpec = 16;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
+
+/* Begin PBXFileReference section */
+		D8080DCE1940F63200204797 /* plugin.xml */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = plugin.xml; sourceTree = "<group>"; };
+		D8080DD01940F63200204797 /* proximitykit.js */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.javascript; path = proximitykit.js; sourceTree = "<group>"; };
+		D8080DD31940F63200204797 /* ProximityKitPlugin.java */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.java; path = ProximityKitPlugin.java; sourceTree = "<group>"; };
+		D8080DD51940F63200204797 /* NSDictionary+JSONMethods.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "NSDictionary+JSONMethods.h"; sourceTree = "<group>"; };
+		D8080DD61940F63200204797 /* NSDictionary+JSONMethods.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "NSDictionary+JSONMethods.m"; sourceTree = "<group>"; };
+		D8080DD71940F63200204797 /* PKCDVPlugin.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PKCDVPlugin.h; sourceTree = "<group>"; };
+		D8080DD81940F63200204797 /* PKCDVPlugin.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PKCDVPlugin.m; sourceTree = "<group>"; };
+		D8080DD91940F63200204797 /* PKRegion+JSONMethods.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "PKRegion+JSONMethods.h"; sourceTree = "<group>"; };
+		D8080DDA1940F63200204797 /* PKRegion+JSONMethods.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "PKRegion+JSONMethods.m"; sourceTree = "<group>"; };
+		D8080DDB1940F63200204797 /* ProximityKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = ProximityKit.framework; sourceTree = "<group>"; };
+		D8080DE01940F68C00204797 /* libPKGap.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPKGap.a; sourceTree = BUILT_PRODUCTS_DIR; };
+		D8080DE31940F68C00204797 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
+		D8080DF11940F68C00204797 /* XCTest.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = XCTest.framework; path = Library/Frameworks/XCTest.framework; sourceTree = DEVELOPER_DIR; };
+		D8080DF41940F68C00204797 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = Library/Frameworks/UIKit.framework; sourceTree = DEVELOPER_DIR; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		D8080DDD1940F68C00204797 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				D8080DE41940F68C00204797 /* Foundation.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		D8080DC71940F41D00204797 = {
+			isa = PBXGroup;
+			children = (
+				D8080DCE1940F63200204797 /* plugin.xml */,
+				D8080DCF1940F63200204797 /* www */,
+				D8080DD11940F63200204797 /* src */,
+				D8080DE21940F68C00204797 /* Frameworks */,
+				D8080DE11940F68C00204797 /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		D8080DCF1940F63200204797 /* www */ = {
+			isa = PBXGroup;
+			children = (
+				D8080DD01940F63200204797 /* proximitykit.js */,
+			);
+			path = www;
+			sourceTree = "<group>";
+		};
+		D8080DD11940F63200204797 /* src */ = {
+			isa = PBXGroup;
+			children = (
+				D8080DD21940F63200204797 /* android */,
+				D8080DD41940F63200204797 /* ios */,
+			);
+			path = src;
+			sourceTree = "<group>";
+		};
+		D8080DD21940F63200204797 /* android */ = {
+			isa = PBXGroup;
+			children = (
+				D8080DD31940F63200204797 /* ProximityKitPlugin.java */,
+			);
+			path = android;
+			sourceTree = "<group>";
+		};
+		D8080DD41940F63200204797 /* ios */ = {
+			isa = PBXGroup;
+			children = (
+				D8080DD51940F63200204797 /* NSDictionary+JSONMethods.h */,
+				D8080DD61940F63200204797 /* NSDictionary+JSONMethods.m */,
+				D8080DD71940F63200204797 /* PKCDVPlugin.h */,
+				D8080DD81940F63200204797 /* PKCDVPlugin.m */,
+				D8080DD91940F63200204797 /* PKRegion+JSONMethods.h */,
+				D8080DDA1940F63200204797 /* PKRegion+JSONMethods.m */,
+				D8080DDB1940F63200204797 /* ProximityKit.framework */,
+			);
+			path = ios;
+			sourceTree = "<group>";
+		};
+		D8080DE11940F68C00204797 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				D8080DE01940F68C00204797 /* libPKGap.a */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		D8080DE21940F68C00204797 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				D8080DE31940F68C00204797 /* Foundation.framework */,
+				D8080DF11940F68C00204797 /* XCTest.framework */,
+				D8080DF41940F68C00204797 /* UIKit.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		D8080DDF1940F68C00204797 /* PKGap */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = D8080E011940F68C00204797 /* Build configuration list for PBXNativeTarget "PKGap" */;
+			buildPhases = (
+				D8080DDC1940F68C00204797 /* Sources */,
+				D8080DDD1940F68C00204797 /* Frameworks */,
+				D8080DDE1940F68C00204797 /* CopyFiles */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = PKGap;
+			productName = PKGap;
+			productReference = D8080DE01940F68C00204797 /* libPKGap.a */;
+			productType = "com.apple.product-type.library.static";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		D8080DC81940F41D00204797 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastUpgradeCheck = 0510;
+			};
+			buildConfigurationList = D8080DCB1940F41D00204797 /* Build configuration list for PBXProject "PKGap" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+			);
+			mainGroup = D8080DC71940F41D00204797;
+			productRefGroup = D8080DE11940F68C00204797 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				D8080DDF1940F68C00204797 /* PKGap */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXSourcesBuildPhase section */
+		D8080DDC1940F68C00204797 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				D8080E071940F83A00204797 /* PKCDVPlugin.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin XCBuildConfiguration section */
+		D8080DCC1940F41D00204797 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+			};
+			name = Debug;
+		};
+		D8080DCD1940F41D00204797 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+			};
+			name = Release;
+		};
+		D8080E021940F68C00204797 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DSTROOT = /tmp/PKGap.dst;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PRECOMPILE_PREFIX_HEADER = NO;
+				GCC_PREFIX_HEADER = "";
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 7.1;
+				ONLY_ACTIVE_ARCH = YES;
+				OTHER_LDFLAGS = "-ObjC";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+			};
+			name = Debug;
+		};
+		D8080E031940F68C00204797 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = YES;
+				DSTROOT = /tmp/PKGap.dst;
+				ENABLE_NS_ASSERTIONS = NO;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_PRECOMPILE_PREFIX_HEADER = NO;
+				GCC_PREFIX_HEADER = "";
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 7.1;
+				OTHER_LDFLAGS = "-ObjC";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		D8080DCB1940F41D00204797 /* Build configuration list for PBXProject "PKGap" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				D8080DCC1940F41D00204797 /* Debug */,
+				D8080DCD1940F41D00204797 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		D8080E011940F68C00204797 /* Build configuration list for PBXNativeTarget "PKGap" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				D8080E021940F68C00204797 /* Debug */,
+				D8080E031940F68C00204797 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = D8080DC81940F41D00204797 /* Project object */;
+}
