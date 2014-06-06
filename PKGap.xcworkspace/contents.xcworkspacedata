@@ -2,7 +2,7 @@
 <Workspace
    version = "1.0">
    <FileRef
-      location = "group:../hello/platforms/ios/HelloWorld.xcodeproj">
+      location = "group:../hello-proximity-cordova/platforms/ios/HelloWorld.xcodeproj">
    </FileRef>
    <FileRef
       location = "group:PKGap.xcodeproj">

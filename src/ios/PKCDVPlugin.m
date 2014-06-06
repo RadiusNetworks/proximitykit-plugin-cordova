@@ -54,7 +54,6 @@ NSString * const PKCDVEventTypeRangedBeacons         = @"didRangeBeacons";
 
 - (void)proximityKitDidSync:(PKManager *)manager
 {
-  NSLog(@"didSync");
   for (NSString *callbackId in self.watchCallbacks)
   {
   	CDVPluginResult *result = [CDVPluginResult resultWithStatus:CDVCommandStatus_OK messageAsString:@"didSync"];
@@ -66,6 +65,12 @@ NSString * const PKCDVEventTypeRangedBeacons         = @"didRangeBeacons";
 - (void)proximityKit:(PKManager *)manager didFailWithError:(NSError *)error
 {
   NSLog(@"didFailWithError %@", error);
+  for (NSString *callbackId in self.watchCallbacks)
+  {
+  	CDVPluginResult *result = [CDVPluginResult resultWithStatus:CDVCommandStatus_ERROR messageAsString:[error localizedDescription]];
+  	[result setKeepCallbackAsBool:YES];
+  	[self.commandDelegate sendPluginResult:result callbackId:callbackId];
+  }
 }
 
 - (void)proximityKit:(PKManager *)manager didEnter:(PKRegion *)region {

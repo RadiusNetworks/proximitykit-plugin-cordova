@@ -5,9 +5,9 @@ xmlns:android="http://schemas.android.com/apk/res/android">
   <name>ProximityKit</name>
   <description>Proximity Kit Plugin for PhoneGap/Cordova</description>
   <platform name="ios">
-	<js-module name="proximitykit" src="www/proximitykit.js">
-	  <clobbers target="cordova.plugins.proximitykit" />
-	</js-module>
+    <js-module name="proximitykit" src="www/proximitykit.js">
+      <clobbers target="cordova.plugins.proximitykit" />
+    </js-module>
     <config-file parent="/*" target="config.xml">
       <feature name="ProximityKit">
         <param name="ios-package" value="PKCDVPlugin" />
