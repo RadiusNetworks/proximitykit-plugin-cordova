@@ -6,14 +6,22 @@ exports.constants = {
   'keys' : {
     'eventType' : 'eventType',
     'region' : 'region',
-    'beacons' : 'beacons',
-    'regionState' : 'regionState'
+    'state' : 'state',
+    'name' : 'name',
+    'identifier' : 'identifier',
+    'attributes' : 'attributes',
+    'uuid' : 'uuid',
+    'major' : 'major',
+    'minor' : 'minor',
+    'rssi' : 'rssi',
+    'proximity' : 'proximity',
+    'beacons' : 'beacons'
   },
   'eventTypes' : {
     'sync' : 'didSync',
     'determinedRegionState' : 'didDetermineState',
-    'enteredRegion' : 'didEnter',
-    'exitedRegion' : 'didExit',
+    'enteredRegion' : 'didEnterRegion',
+    'exitedRegion' : 'didExitRegion',
     'rangedBeacons' : 'didRangeBeacons'
   }
 };

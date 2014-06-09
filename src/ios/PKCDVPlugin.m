@@ -8,13 +8,12 @@ NSString * const PKCDVEventTypeDeterminedRegionState = @"didDetermineState";
 NSString * const PKCDVEventTypeRangedBeacons         = @"didRangeBeacons";
 
 NSString * const PKCDVEventRegionKey                 = @"region";
-NSString * const PKCDVEventRegionName                = @"name";
-NSString * const PKCDVEventRegionIdentifier          = @"identifier";
-NSString * const PKCDVEventRegionAttributes          = @"attributes";
+NSString * const PKCDVEventRegionNameKey             = @"name";
+NSString * const PKCDVEventRegionIdentifierKey       = @"identifier";
+NSString * const PKCDVEventRegionAttributesKey       = @"attributes";
+NSString * const PKCDVEventRegionStateKey            = @"state";
 
 NSString * const PKCDVEventBeaconsKey                = @"beacons";
-
-NSString * const PKCDVEventRegionStateKey            = @"state";
 
 NSString * const PKCDVEventBeaconUUIDKey             = @"uuid";
 NSString * const PKCDVEventBeaconMajorKey            = @"major";
@@ -33,9 +32,9 @@ NSString * const PKCDVEventBeaconProximityKey        = @"proximity";
 -(NSDictionary *) toDictionary
 {
   return @{
-           PKCDVEventRegionName: self.name,
-           PKCDVEventRegionIdentifier: self.identifier,
-           PKCDVEventRegionAttributes: self.attributes,
+           PKCDVEventRegionNameKey: self.name,
+           PKCDVEventRegionIdentifierKey: self.identifier,
+           PKCDVEventRegionAttributesKey: self.attributes,
            };
 }
 
