@@ -6,10 +6,12 @@ exports.constants = {
   'keys' : {
     'eventType' : 'eventType',
     'region' : 'region',
-    'beacons' : 'beacons'
+    'beacons' : 'beacons',
+    'regionState' : 'regionState'
   },
   'eventTypes' : {
     'sync' : 'didSync',
+    'determinedRegionState' : 'didDetermineState',
     'enteredRegion' : 'didEnter',
     'exitedRegion' : 'didExit',
     'rangedBeacons' : 'didRangeBeacons'

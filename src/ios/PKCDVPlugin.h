@@ -13,6 +13,10 @@ FOUNDATION_EXPORT NSString * const PKCDVEventRegionName;
 FOUNDATION_EXPORT NSString * const PKCDVEventRegionIdentifier;
 FOUNDATION_EXPORT NSString * const PKCDVEventRegionAttributes;
 
+FOUNDATION_EXPORT NSString * const PKCDVEventBeaconsKey;
+
+FOUNDATION_EXPORT NSString * const PKCDVEventRegionStateKey;
+
 @interface PKCDVPlugin : CDVPlugin<PKManagerDelegate>
 
 - (void)watchProximity:(CDVInvokedUrlCommand *)command;
