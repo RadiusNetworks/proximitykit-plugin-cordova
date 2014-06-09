@@ -56,7 +56,7 @@ NSString * const PKCDVEventTypeRangedBeacons         = @"didRangeBeacons";
 {
   for (NSString *callbackId in self.watchCallbacks)
   {
-  	CDVPluginResult *result = [CDVPluginResult resultWithStatus:CDVCommandStatus_OK messageAsString:@"didSync"];
+  	CDVPluginResult *result = [CDVPluginResult resultWithStatus:CDVCommandStatus_OK messageAsDictionary:[self pluginResultDidSync]];
   	[result setKeepCallbackAsBool:YES];
   	[self.commandDelegate sendPluginResult:result callbackId:callbackId];
   }
@@ -91,6 +91,13 @@ NSString * const PKCDVEventTypeRangedBeacons         = @"didRangeBeacons";
             inRegion:(PKRegion *)region
 {
   NSLog(@"didRangeBeacons %@", beacons);
+}
+
+#pragma mark - Plugin Results
+
+-(NSDictionary *) pluginResultDidSync
+{
+  return @{PKCDVEventTypeKey : PKCDVEventTypeSynced};
 }
 
 @end
