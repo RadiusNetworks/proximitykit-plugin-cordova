@@ -18,8 +18,11 @@ xmlns:android="http://schemas.android.com/apk/res/android">
     <framework src="src/ios/ProximityKit.framework" custom="true" />
   </platform>
   <platform name="android">
+      <js-module name="proximitykit" src="www/proximitykit.js">
+          <clobbers target="cordova.plugins.proximitykit" />
+      </js-module>
     <config-file parent="/*" target="res/xml/config.xml">
-      <feature name="proximitykit">
+      <feature name="ProximityKit">
         <param name="android-package" value="com.radiusnetworks.cordova.proximity.ProximityKitPlugin" />
       </feature>
     </config-file>

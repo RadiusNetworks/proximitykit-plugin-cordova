@@ -71,6 +71,7 @@ public class ProximityKitPlugin extends CordovaPlugin implements ProximityKitNot
 
     @Override
     public boolean execute(String action, JSONArray args, CallbackContext callbackContext) throws JSONException {
+        Log.d(TAG, "execute: action is " + action + ", args is " + args.toString());
         boolean handled = false;
         if (action.equals(ACTION_WATCH)) {
             String watchId = args.getString(0);
@@ -86,21 +87,22 @@ public class ProximityKitPlugin extends CordovaPlugin implements ProximityKitNot
     }
 
     private void watchProximity(String watchId, CallbackContext callbackContext) {
-        watches.put(watchId, callbackContext);
+        addWatch(watchId, callbackContext);
     };
 
     private void clearWatch(String watchId, CallbackContext callbackContext) {
-        watches.remove(watchId);
+        removeWatch(watchId);
     };
 
-    public void addWatch(String timerId, CallbackContext callbackContext) {
+    private void addWatch(String timerId, CallbackContext callbackContext) {
+        Log.d(TAG, "Adding watch " + timerId);
         watches.put(timerId, callbackContext);
         if (watches.size() == 1) {
             start();
         }
     }
 
-    public void clearWatch(String timerId) {
+    private void removeWatch(String timerId) {
         if (watches.containsKey(timerId)) {
             watches.remove(timerId);
         }
@@ -117,6 +119,7 @@ public class ProximityKitPlugin extends CordovaPlugin implements ProximityKitNot
 
     private void start() {
         if (! running) {
+            Log.d(TAG, "Starting pkManager");
             running = true;
             pkManager.start();
         }
@@ -167,14 +170,7 @@ public class ProximityKitPlugin extends CordovaPlugin implements ProximityKitNot
 
     @Override
     public void didSync() {
-        /*
-          for (NSString *callbackId in self.watchCallbacks)
-          {
-            CDVPluginResult *result = [CDVPluginResult resultWithStatus:CDVCommandStatus_OK messageAsDictionary:[self pluginResultDidSync]];
-            [result setKeepCallbackAsBool:YES];
-            [self.commandDelegate sendPluginResult:result callbackId:callbackId];
-          }
-         */
+        Log.d(TAG, "didSync");
         Iterator<CallbackContext> it = this.watches.values().iterator();
         while (it.hasNext()) {
             success(syncMessage(), it.next(), true);
@@ -183,6 +179,6 @@ public class ProximityKitPlugin extends CordovaPlugin implements ProximityKitNot
 
     @Override
     public void didFailSync(Exception e) {
-        Log.d(TAG, "failed sync", e);
+        Log.d(TAG, "didFailSync", e);
     }
 }
