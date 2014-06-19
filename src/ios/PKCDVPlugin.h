@@ -14,6 +14,7 @@ FOUNDATION_EXPORT NSString * const PKCDVEventRegionIdentifier;
 FOUNDATION_EXPORT NSString * const PKCDVEventRegionAttributes;
 
 FOUNDATION_EXPORT NSString * const PKCDVEventBeaconsKey;
+FOUNDATION_EXPORT NSString * const PKCDVEventBeaconKey;
 
 FOUNDATION_EXPORT NSString * const PKCDVEventRegionStateKey;
 

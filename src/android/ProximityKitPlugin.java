@@ -18,9 +18,11 @@ import com.radiusnetworks.ibeacon.Region;
 import com.radiusnetworks.ibeacon.client.DataProviderException;
 import com.radiusnetworks.proximity.ProximityKitManager;
 import com.radiusnetworks.proximity.ProximityKitNotifier;
+import com.radiusnetworks.proximity.ibeacon.data.proximitykit.PkIBeaconData;
 
 import java.util.HashMap;
 import java.util.Iterator;
+import java.util.Map;
 
 public class ProximityKitPlugin extends CordovaPlugin implements ProximityKitNotifier {
 
@@ -44,11 +46,14 @@ public class ProximityKitPlugin extends CordovaPlugin implements ProximityKitNot
     public static final String EVENT_REGION_STATE_KEY             = "state";
 
     public static final String EVENT_BEACONS_KEY                  = "beacons";
+    public static final String EVENT_BEACON_KEY                   = "beacon";
 
     public static final String EVENT_BEACON_UUID_KEY              = "uuid";
     public static final String EVENT_BEACON_MAJOR_KEY             = "major";
     public static final String EVENT_BEACON_MINOR_KEY             = "minor";
     public static final String EVENT_BEACON_RSSI_KEY              = "rssi";
+    public static final String EVENT_BEACON_ATTRIBUTES_KEY        = "attributes";
+    public static final String EVENT_BEACON_IDENTIFIER_KEY        = "identifier";
     public static final String EVENT_BEACON_PROXIMITY_KEY         = "proximity";
 
     private static ProximityKitManager pkManager;
@@ -198,10 +203,11 @@ public class ProximityKitPlugin extends CordovaPlugin implements ProximityKitNot
         return o;
     }
 
-    public JSONObject pluginResultDidRangeBeacon(IBeacon beacon) {
+    public JSONObject pluginResultDidRangeBeacon(IBeacon beacon, IBeaconData beaconData) {
         JSONObject o = new JSONObject();
         try {
             o.put(EVENT_TYPE_KEY, EVENT_TYPE_RANGED_BEACON);
+            o.put(EVENT_BEACON_KEY, toJSON(beacon, beaconData));
         } catch (JSONException e) {
             // TODO Auto-generated catch block
             e.printStackTrace();
@@ -216,6 +222,7 @@ public class ProximityKitPlugin extends CordovaPlugin implements ProximityKitNot
     public void iBeaconDataUpdate(IBeacon iBeacon,
                                   IBeaconData iBeaconData,
                                   DataProviderException e) {
+        sendSuccessMessageToAllWatches(pluginResultDidRangeBeacon(iBeacon, iBeaconData));
     }
 
     @Override
@@ -258,5 +265,24 @@ public class ProximityKitPlugin extends CordovaPlugin implements ProximityKitNot
         }
 
         return regionJSON;
+    }
+
+    private JSONObject toJSON(IBeacon beacon,
+                              IBeaconData beaconData)
+    {
+        JSONObject beaconJSON = new JSONObject();
+        try {
+            beaconJSON.put(EVENT_BEACON_UUID_KEY, beacon.getProximityUuid());
+            beaconJSON.put(EVENT_BEACON_MAJOR_KEY, beacon.getMajor());
+            beaconJSON.put(EVENT_BEACON_MINOR_KEY, beacon.getMinor());
+            beaconJSON.put(EVENT_BEACON_RSSI_KEY, beacon.getRssi());
+            beaconJSON.put(EVENT_BEACON_PROXIMITY_KEY, beacon.getProximity());
+            beaconJSON.put(EVENT_BEACON_ATTRIBUTES_KEY, new JSONObject(((PkIBeaconData) beaconData).getAttributes()));
+        } catch (JSONException e) {
+            // TODO Auto-generated catch block
+            e.printStackTrace();
+        }
+
+        return beaconJSON;
     }
 }
