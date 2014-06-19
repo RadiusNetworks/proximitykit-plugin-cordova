@@ -26,10 +26,30 @@ xmlns:android="http://schemas.android.com/apk/res/android">
         <param name="android-package" value="com.radiusnetworks.cordova.proximity.ProximityKitPlugin" />
       </feature>
     </config-file>
-        <config-file target="AndroidManifest.xml" parent="/*">
-			<uses-permission android:name="android.permission.BLUETOOTH"/>
-			<uses-permission android:name="android.permission.BLUETOOTH_ADMIN"/>
-        </config-file>
+    <config-file target="AndroidManifest.xml" parent="/*">
+        <uses-permission android:name="android.permission.BLUETOOTH"/>
+        <uses-permission android:name="android.permission.BLUETOOTH_ADMIN"/>
+        <uses-permission android:name="android.permission.INTERNET"/>
+        <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION"/>
+        <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"/>
+        <uses-permission android:name="android.permission.RECEIVE_BOOT_COMPLETED"/>
+    </config-file>
+    <config-file target="AndroidManifest.xml" parent="/manifest/application">
+        <receiver android:name="com.radiusnetworks.proximity.ibeacon.startup.StartupBroadcastReceiver">
+            <intent-filter>
+                <action android:name="android.intent.action.BOOT_COMPLETED"/>
+                <action android:name="android.intent.action.ACTION_POWER_CONNECTED"/>
+                <action android:name="android.intent.action.ACTION_POWER_DISCONNECTED"/>
+            </intent-filter>
+        </receiver>
+        <service android:enabled="true" android:exported="true" android:isolatedProcess="false" android:label="iBeacon" android:name="com.radiusnetworks.ibeacon.service.IBeaconService">
+        </service>
+
+        <service android:enabled="true" android:name="com.radiusnetworks.ibeacon.IBeaconIntentProcessor">
+        </service>
+    </config-file>
     <source-file src="src/android/ProximityKitPlugin.java" target-dir="src/com/radiusnetworks/cordova/proximity" />
+    <source-file src="src/android/AndroidIBeaconLibrary.jar" target-dir="libs" framework="true" />
+    <source-file src="src/android/AndroidProximityLibrary.jar" target-dir="libs" framework="true" />
   </platform>
 </plugin>
