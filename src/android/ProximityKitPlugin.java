@@ -53,6 +53,7 @@ public class ProximityKitPlugin extends CordovaPlugin implements ProximityKitNot
     public static final String EVENT_BEACON_MINOR_KEY             = "minor";
     public static final String EVENT_BEACON_RSSI_KEY              = "rssi";
     public static final String EVENT_BEACON_ATTRIBUTES_KEY        = "attributes";
+    public static final String EVENT_BEACON_IDENTIFIER_KEY        = "identifier";
     public static final String EVENT_BEACON_PROXIMITY_KEY         = "proximity";
 
     private static ProximityKitManager pkManager;
@@ -275,6 +276,7 @@ public class ProximityKitPlugin extends CordovaPlugin implements ProximityKitNot
             beaconJSON.put(EVENT_BEACON_MAJOR_KEY, beacon.getMajor());
             beaconJSON.put(EVENT_BEACON_MINOR_KEY, beacon.getMinor());
             beaconJSON.put(EVENT_BEACON_RSSI_KEY, beacon.getRssi());
+            beaconJSON.put(EVENT_BEACON_PROXIMITY_KEY, beacon.getProximity());
             beaconJSON.put(EVENT_BEACON_ATTRIBUTES_KEY, new JSONObject(((PkIBeaconData) beaconData).getAttributes()));
         } catch (JSONException e) {
             // TODO Auto-generated catch block
