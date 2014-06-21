@@ -1,13 +1,45 @@
 ProximityKit Plugin for Cordova/PhoneGap
 ========================================
 
-Last Updated 06-June-2014
+Last Updated 21-June-2014
 
 Michael Harper (mharper@standalonecode.com)
 
-Directory Structure
--------------------
+Installation
+------------
+Currently, the plugin is distributed only as a zip file.  Unzip the directory *outside* of your Cordova/PhoneGap project.  Make sure you have added the iOS and/or Android platforms to your project *before* adding the plugin.
 
+To add the plugin to your project, run the following command:
+
+```
+$ cordova plugin add <path_to_plugin_directory>
+```
+
+This will add the plugin to your project's config.xml file and will copy various files into the native `src` directory for your platforms.  It will also modify your `AndroidManifest.xml` if you are building for Android.  Please do not remove the `<service>`, `<receiver>`, and `<uses-permission>` elements that are added to the file or the plugin will not work properly.
+
+
+Usage
+-----
+The plugin manifests itself in Javascript as `cordova.plugins.proximitykit`. There are two methods on this object:
+
+`watchProximity(successHandler, failureHandler) returns watchId`
+
+`successHandler` is a function that receives a `message` object from ProximityKit on a periodic basis.  The `message` object always has an `eventType` associated with it which is a String.
+
+`eventType` values:
+
+|didSync          | ProximityKit synced with the server |
+|didEnterRegion   | Region entered                      |
+|didExitRegion    | Region exited                       |
+|didDetermineState| State determined for region         |
+|didRangeBeacon   | A beacon is in range                |
+
+Based on the `eventType`, there may be additional items in the `message`.
+
+`clearWatch(watchId)`
+
+Directory Structure
+---
 `plugin.xml` This is the file that defines the configuration of the ProximityKit plugin.
 
 `src`<br/>
