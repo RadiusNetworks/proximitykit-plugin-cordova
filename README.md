@@ -3,7 +3,7 @@ ProximityKit Plugin for Cordova/PhoneGap
 
 Last Updated 21-June-2014
 
-Michael Harper (mharper@standalonecode.com)
+Michael Harper (michael@radiusnetworks.com)
 
 Installation
 ------------
@@ -28,6 +28,8 @@ The plugin manifests itself in Javascript as `cordova.plugins.proximitykit`. The
 
 `eventType` values:
 
+|Value            | Event                               |
+|:----------------|:------------------------------------|
 |didSync          | ProximityKit synced with the server |
 |didEnterRegion   | Region entered                      |
 |didExitRegion    | Region exited                       |
