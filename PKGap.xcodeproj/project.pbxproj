@@ -27,12 +27,8 @@
 		D8080DCE1940F63200204797 /* plugin.xml */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = plugin.xml; sourceTree = "<group>"; };
 		D8080DD01940F63200204797 /* proximitykit.js */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.javascript; path = proximitykit.js; sourceTree = "<group>"; };
 		D8080DD31940F63200204797 /* ProximityKitPlugin.java */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.java; path = ProximityKitPlugin.java; sourceTree = "<group>"; };
-		D8080DD51940F63200204797 /* NSDictionary+JSONMethods.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "NSDictionary+JSONMethods.h"; sourceTree = "<group>"; };
-		D8080DD61940F63200204797 /* NSDictionary+JSONMethods.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "NSDictionary+JSONMethods.m"; sourceTree = "<group>"; };
 		D8080DD71940F63200204797 /* PKCDVPlugin.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PKCDVPlugin.h; sourceTree = "<group>"; };
 		D8080DD81940F63200204797 /* PKCDVPlugin.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PKCDVPlugin.m; sourceTree = "<group>"; };
-		D8080DD91940F63200204797 /* PKRegion+JSONMethods.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "PKRegion+JSONMethods.h"; sourceTree = "<group>"; };
-		D8080DDA1940F63200204797 /* PKRegion+JSONMethods.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "PKRegion+JSONMethods.m"; sourceTree = "<group>"; };
 		D8080DDB1940F63200204797 /* ProximityKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = ProximityKit.framework; sourceTree = "<group>"; };
 		D8080DE01940F68C00204797 /* libPKGap.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPKGap.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		D8080DE31940F68C00204797 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
@@ -93,12 +89,8 @@
 		D8080DD41940F63200204797 /* ios */ = {
 			isa = PBXGroup;
 			children = (
-				D8080DD51940F63200204797 /* NSDictionary+JSONMethods.h */,
-				D8080DD61940F63200204797 /* NSDictionary+JSONMethods.m */,
 				D8080DD71940F63200204797 /* PKCDVPlugin.h */,
 				D8080DD81940F63200204797 /* PKCDVPlugin.m */,
-				D8080DD91940F63200204797 /* PKRegion+JSONMethods.h */,
-				D8080DDA1940F63200204797 /* PKRegion+JSONMethods.m */,
 				D8080DDB1940F63200204797 /* ProximityKit.framework */,
 			);
 			path = ios;
