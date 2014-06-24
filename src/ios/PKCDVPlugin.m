@@ -5,7 +5,6 @@ NSString * const PKCDVEventTypeSynced                = @"didSync";
 NSString * const PKCDVEventTypeEnteredRegion         = @"didEnterRegion";
 NSString * const PKCDVEventTypeExitedRegion          = @"didExitRegion";
 NSString * const PKCDVEventTypeDeterminedRegionState = @"didDetermineState";
-NSString * const PKCDVEventTypeRangedBeacons         = @"didRangeBeacons";
 NSString * const PKCDVEventTypeRangedBeacon          = @"didRangeBeacon";
 
 NSString * const PKCDVEventRegionKey                 = @"region";
@@ -14,7 +13,6 @@ NSString * const PKCDVEventRegionIdentifierKey       = @"identifier";
 NSString * const PKCDVEventRegionAttributesKey       = @"attributes";
 NSString * const PKCDVEventRegionStateKey            = @"state";
 
-NSString * const PKCDVEventBeaconsKey                = @"beacons";
 NSString * const PKCDVEventBeaconKey                 = @"beacon";
 
 NSString * const PKCDVEventBeaconUUIDKey             = @"uuid";
@@ -113,12 +111,8 @@ NSString * const PKCDVEventBeaconAttributesKey       = @"attributes";
 
 - (void)proximityKitDidSync:(PKManager *)manager
 {
-  for (NSString *callbackId in self.watchCallbacks)
-  {
-  	CDVPluginResult *result = [CDVPluginResult resultWithStatus:CDVCommandStatus_OK messageAsDictionary:[self pluginResultDidSync]];
-  	[result setKeepCallbackAsBool:YES];
-  	[self.commandDelegate sendPluginResult:result callbackId:callbackId];
-  }
+  NSLog(@"didSync");
+  [self sendSuccessMessageToAllWatches:[self pluginResultDidSync]];
 }
 
 - (void)proximityKit:(PKManager *)manager didFailWithError:(NSError *)error
@@ -134,34 +128,19 @@ NSString * const PKCDVEventBeaconAttributesKey       = @"attributes";
 
 - (void)proximityKit:(PKManager *)manager didEnter:(PKRegion *)region {
   NSLog(@"didEnter %@", region);
-  for (NSString *callbackId in self.watchCallbacks)
-  {
-  	CDVPluginResult *result = [CDVPluginResult resultWithStatus:CDVCommandStatus_OK messageAsDictionary:[self pluginResultDidEnter:region]];
-  	[result setKeepCallbackAsBool:YES];
-  	[self.commandDelegate sendPluginResult:result callbackId:callbackId];
-  }
+  [self sendSuccessMessageToAllWatches:[self pluginResultDidEnter:region]];
 }
 
 - (void)proximityKit:(PKManager *)manager didExit:(PKRegion *)region {
   NSLog(@"didExit %@", region);
-  for (NSString *callbackId in self.watchCallbacks)
-  {
-  	CDVPluginResult *result = [CDVPluginResult resultWithStatus:CDVCommandStatus_OK messageAsDictionary:[self pluginResultDidExit:region]];
-  	[result setKeepCallbackAsBool:YES];
-  	[self.commandDelegate sendPluginResult:result callbackId:callbackId];
-  }
+  [self sendSuccessMessageToAllWatches:[self pluginResultDidExit:region]];
 }
 
 - (void)proximityKit:(PKManager *)manager didDetermineState:(PKRegionState)state
            forRegion:(PKRegion *)region
 {
   NSLog(@"didDetermineState %@", region);
-  for (NSString *callbackId in self.watchCallbacks)
-  {
-  	CDVPluginResult *result = [CDVPluginResult resultWithStatus:CDVCommandStatus_OK messageAsDictionary:[self pluginResultDidDetermineState:state forRegion:region]];
-  	[result setKeepCallbackAsBool:YES];
-  	[self.commandDelegate sendPluginResult:result callbackId:callbackId];
-  }
+  [self sendSuccessMessageToAllWatches:[self pluginResultDidDetermineState:state forRegion:region]];
 }
 
 - (void)proximityKit:(PKManager *)manager didRangeBeacons:(NSArray *)beacons
@@ -181,6 +160,16 @@ NSString * const PKCDVEventBeaconAttributesKey       = @"attributes";
 }
 
 #pragma mark - Plugin Results
+
+-(void) sendSuccessMessageToAllWatches:(NSDictionary *) message
+{
+  for (NSString *callbackId in self.watchCallbacks)
+  {
+  	CDVPluginResult *result = [CDVPluginResult resultWithStatus:CDVCommandStatus_OK messageAsDictionary:message];
+  	[result setKeepCallbackAsBool:YES];
+  	[self.commandDelegate sendPluginResult:result callbackId:callbackId];
+  }
+}
 
 -(NSDictionary *) pluginResultDidSync
 {
@@ -213,31 +202,12 @@ NSString * const PKCDVEventBeaconAttributesKey       = @"attributes";
            };
 }
 
--(NSDictionary *) pluginResultDidRangeBeacons:(NSArray *) beacons inRegion:(PKRegion *) region
-{
-  return @{
-           PKCDVEventTypeKey : PKCDVEventTypeRangedBeacons,
-           PKCDVEventRegionKey : [region toDictionary],
-           PKCDVEventBeaconsKey : [self JSONSafeBeaconArray:beacons]
-           };
-}
-
 -(NSDictionary *) pluginResultDidRangeBeacon:(PKIBeacon *) beacon
 {
   return @{
            PKCDVEventTypeKey : PKCDVEventTypeRangedBeacon,
            PKCDVEventBeaconKey : [beacon toDictionary]
            };
-}
-
--(NSArray *) JSONSafeBeaconArray:(NSArray *) beacons
-{
-  NSMutableArray *safeBeaconArray = [NSMutableArray arrayWithCapacity:beacons.count];
-  for (PKIBeacon *beacon in beacons)
-  {
-    [safeBeaconArray addObject:[((PKIBeacon *) beacon) toDictionary]];
-  }
-  return safeBeaconArray;
 }
 
 @end
