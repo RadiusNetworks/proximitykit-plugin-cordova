@@ -18,7 +18,6 @@ var proximitykit =
         'minor' : 'minor',
         'rssi' : 'rssi',
         'proximity' : 'proximity',
-        'beacons' : 'beacons',
         'beacon' : 'beacon'
       },
       'eventTypes' : {
@@ -26,7 +25,6 @@ var proximitykit =
         'determinedRegionState' : 'didDetermineState',
         'enteredRegion' : 'didEnterRegion',
         'exitedRegion' : 'didExitRegion',
-        'rangedBeacons' : 'didRangeBeacons',
         'rangedBeacon' : 'didRangeBeacon'
       }
     },
