@@ -1,7 +1,7 @@
 ProximityKit Plugin for Cordova/PhoneGap
 ========================================
 
-Last Updated 26-June-2014
+Last Updated 11-July-2014
 
 Michael Harper (michael@radiusnetworks.com)
 
@@ -12,7 +12,7 @@ The plugin is distributed via Github.
 To add the plugin to your project, run the following command:
 
 ```
-$ cordova plugin add https://github.com/RadiusNetworks/proximity-plugin-cordova
+$ cordova plugin add https://github.com/RadiusNetworks/proximitykit-plugin-cordova
 ```
 
 This will add the plugin to your project's `config.xml` file and will copy various files into the native `src` directory for your platforms.
@@ -120,7 +120,7 @@ Removal
 To remove the plugin from your project, run the following command:
 
 ```
-$ cordova plugin rm com.radiusnetworks.cordova.proximity
+$ cordova plugin rm com.radiusnetworks.cordova.proximitykit
 ```
 
 You may also delete the `ProximityKit.plist` and/or `ProximityKit.properties` file(s) from your project directory (and your Xcode project on iOS).
