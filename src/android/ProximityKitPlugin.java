@@ -1,4 +1,4 @@
-package com.radiusnetworks.cordova.proximity;
+package com.radiusnetworks.cordova.proximitykit;
 
 import android.util.Log;
 
