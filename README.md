@@ -1,7 +1,7 @@
 ProximityKit Plugin for Cordova/PhoneGap
 ========================================
 
-Last Updated 11-July-2014
+Last Updated 14-July-2014
 
 Michael Harper (michael@radiusnetworks.com)
 
@@ -17,18 +17,13 @@ $ cordova plugin add https://github.com/RadiusNetworks/proximitykit-plugin-cordo
 
 This will add the plugin to your project's `config.xml` file and will copy various files into the native `src` directory for your platforms.
 
-### Android only
-
-Adding the plugin will also modify your `AndroidManifest.xml` if you are building for Android.  Please do not remove the `<service>`, `<receiver>`, and `<uses-permission>` elements that are added to this file or the plugin will not work properly.
-
 ProximityKit Integration
 ---
-In order to provide the necessary ProximityKit configuration data to the native apps, download the `ProximityKit.plist` (for iOS) and/or `ProximityKit.properties` (for Android) for your kit.  These files need to be in the following location within your project depending on the platform being built:
+In order to provide the necessary ProximityKit configuration data to the native apps, download the `ProximityKit.plist` (for iOS) for your kit.  These files need to be in the following location within your project depending on the platform being built:
 
 | Platform | Location of ProximityKit configuration file         |
 |:---------|:----------------------------------------------------|
 | iOS      | `./platforms/ios/<Project Name>/ProximityKit.plist` |
-| Android  | `./platforms/android/src/ProximityKit.properties`   |
 
 ### iOS only
 
@@ -85,7 +80,6 @@ Additional data:
 |`beacon`           | Beacon data                                              |
 
 
-
 ### `clearWatch(watchId)`
 
 Cancels callbacks from ProximityKit.  This method should be called with a `watchId` previously returned by a call to `watchProximity`.
@@ -123,4 +117,4 @@ To remove the plugin from your project, run the following command:
 $ cordova plugin rm com.radiusnetworks.cordova.proximitykit
 ```
 
-You may also delete the `ProximityKit.plist` and/or `ProximityKit.properties` file(s) from your project directory (and your Xcode project on iOS).
+You may also delete the `ProximityKit.plist` file from your project directory (and your Xcode project on iOS).
