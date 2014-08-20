@@ -1,7 +1,7 @@
 #import "RPKCDVPlugin.h"
 
-NSString * const RRPKCDVEventTypeKey                   = @"eventType";
-NSString * const RRPKCDVEventTypeSynced                = @"didSync";
+NSString * const RPKCDVEventTypeKey                   = @"eventType";
+NSString * const RPKCDVEventTypeSynced                = @"didSync";
 NSString * const RPKCDVEventTypeEnteredRegion         = @"didEnterRegion";
 NSString * const RPKCDVEventTypeExitedRegion          = @"didExitRegion";
 NSString * const RPKCDVEventTypeDeterminedRegionState = @"didDetermineState";
