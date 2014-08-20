@@ -12,7 +12,7 @@ The plugin is distributed via Github.
 To add the plugin to your project (the android_state_preservation branch specifically), run the following command:
 
 ```
-$ cordova plugin add https://github.com/RadiusNetworks/proximitykit-plugin-cordova.git#android_state_preservation
+$ cordova plugin add https://github.com/RadiusNetworks/proximitykit-plugin-cordova.git#update_proximity_kit
 ```
 
 This will add the plugin to your project's `config.xml` file and will copy various files into the native `src` directory for your platforms.
