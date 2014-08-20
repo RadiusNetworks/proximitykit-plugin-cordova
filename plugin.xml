@@ -10,11 +10,11 @@ xmlns:android="http://schemas.android.com/apk/res/android">
     </js-module>
     <config-file parent="/*" target="config.xml">
       <feature name="ProximityKit">
-        <param name="ios-package" value="PKCDVPlugin" />
+        <param name="ios-package" value="RPKCDVPlugin" />
       </feature>
     </config-file>
-    <header-file src="src/ios/PKCDVPlugin.h" />
-    <source-file src="src/ios/PKCDVPlugin.m" />
+    <header-file src="src/ios/RPKCDVPlugin.h" />
+    <source-file src="src/ios/RPKCDVPlugin.m" />
     <framework src="src/ios/ProximityKit.framework" custom="true" />
   </platform>
   <platform name="android">
