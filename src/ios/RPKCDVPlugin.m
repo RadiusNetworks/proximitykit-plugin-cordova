@@ -1,4 +1,4 @@
-#import "RRPKCDVPlugin.h"
+#import "RPKCDVPlugin.h"
 
 NSString * const RRPKCDVEventTypeKey                   = @"eventType";
 NSString * const RRPKCDVEventTypeSynced                = @"didSync";
