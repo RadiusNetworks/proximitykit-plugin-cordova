@@ -41,13 +41,13 @@ NSString * const RPKCDVEventBeaconAttributesKey       = @"attributes";
 
 @end
 
-@interface RPKIBeacon (RPKAdditions)
+@interface RPKBeacon (RPKAdditions)
 
 -(NSDictionary *) toDictionary;
 
 @end
 
-@implementation RPKIBeacon (RPKAdditions)
+@implementation RPKBeacon (RPKAdditions)
 
 -(NSDictionary *) toDictionary
 {
@@ -148,7 +148,7 @@ NSString * const RPKCDVEventBeaconAttributesKey       = @"attributes";
 {
   NSLog(@"didRangeBeacons %@", beacons);
   // Callback for each individual beacon, not all at once, because Android receives only one at a time.
-  for (RPKIBeacon *beacon in beacons)
+  for (RPKBeacon *beacon in beacons)
   {
     CDVPluginResult *result = [CDVPluginResult resultWithStatus:CDVCommandStatus_OK messageAsDictionary:[self pluginResultDidRangeBeacon:beacon]];
     [result setKeepCallbackAsBool:YES];
@@ -202,7 +202,7 @@ NSString * const RPKCDVEventBeaconAttributesKey       = @"attributes";
            };
 }
 
--(NSDictionary *) pluginResultDidRangeBeacon:(RPKIBeacon *) beacon
+-(NSDictionary *) pluginResultDidRangeBeacon:(RPKBeacon *) beacon
 {
   return @{
            RPKCDVEventTypeKey : RPKCDVEventTypeRangedBeacon,
