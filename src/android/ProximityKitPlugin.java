@@ -12,19 +12,22 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
-import com.radiusnetworks.ibeacon.IBeacon;
-import com.radiusnetworks.ibeacon.IBeaconData;
-import com.radiusnetworks.ibeacon.Region;
-import com.radiusnetworks.ibeacon.client.DataProviderException;
+import com.radiusnetworks.beacon.Beacon;
+import com.radiusnetworks.beacon.BeaconData;
+import com.radiusnetworks.beacon.Region;
+import com.radiusnetworks.beacon.client.DataProviderException;
+
 import com.radiusnetworks.proximity.ProximityKitManager;
-import com.radiusnetworks.proximity.ProximityKitNotifier;
-import com.radiusnetworks.proximity.ibeacon.data.proximitykit.PkIBeaconData;
+import com.radiusnetworks.proximity.ProximityKitMonitorNotifier;
+import com.radiusnetworks.proximity.ProximityKitRangeNotifier;
+import com.radiusnetworks.proximity.ProximityKitSyncNotifier;
+import com.radiusnetworks.proximity.beacon.data.proximitykit.PkBeaconData;
 
 import java.util.HashMap;
 import java.util.Iterator;
 import java.util.Map;
 
-public class ProximityKitPlugin extends CordovaPlugin implements ProximityKitNotifier {
+public class ProximityKitPlugin extends CordovaPlugin implements ProximityKitMonitorNotifier, ProximityKitRangeNotifier, ProximityKitSyncNotifier {
 
     public static final String ACTION_WATCH = "watchProximity";
     public static final String ACTION_CLEAR_WATCH = "clearWatch";
@@ -66,8 +69,10 @@ public class ProximityKitPlugin extends CordovaPlugin implements ProximityKitNot
     {
         super.initialize(cordova, webView);
         pkManager = ProximityKitManager.getInstanceForApplication(cordova.getActivity().getApplicationContext());
-        pkManager.setNotifier(this);
-        pkManager.getIBeaconManager().setDebug(true);
+        pkManager.setProximityKitSyncNotifier(this);
+        pkManager.setProximityKitMonitorNotifier(this);
+        pkManager.setProximityKitRangeNotifier(this);
+    	pkManager.getBeaconManager().setDebug(true);
     }
 
     @Override
@@ -203,7 +208,7 @@ public class ProximityKitPlugin extends CordovaPlugin implements ProximityKitNot
         return o;
     }
 
-    public JSONObject pluginResultDidRangeBeacon(IBeacon beacon, IBeaconData beaconData) {
+    public JSONObject pluginResultDidRangeBeacon(Beacon beacon, BeaconData beaconData) {
         JSONObject o = new JSONObject();
         try {
             o.put(EVENT_TYPE_KEY, EVENT_TYPE_RANGED_BEACON);
@@ -219,11 +224,16 @@ public class ProximityKitPlugin extends CordovaPlugin implements ProximityKitNot
     private static final String TAG = "ProximityKitPlugin";
 
     @Override
-    public void iBeaconDataUpdate(IBeacon iBeacon,
-                                  IBeaconData iBeaconData,
+    public void BeaconDataUpdate(Beacon Beacon,
+                                  BeaconData BeaconData,
                                   DataProviderException e) {
-        sendSuccessMessageToAllWatches(pluginResultDidRangeBeacon(iBeacon, iBeaconData));
+        sendSuccessMessageToAllWatches(pluginResultDidRangeBeacon(Beacon, BeaconData));
     }
+    /*
+    @override
+    public void didRangeBeaconsInRegion() {
+    	
+    }*/
 
     @Override
     public void didEnterRegion(Region region) {
@@ -267,8 +277,8 @@ public class ProximityKitPlugin extends CordovaPlugin implements ProximityKitNot
         return regionJSON;
     }
 
-    private JSONObject toJSON(IBeacon beacon,
-                              IBeaconData beaconData)
+    private JSONObject toJSON(Beacon beacon,
+                              BeaconData beaconData)
     {
         JSONObject beaconJSON = new JSONObject();
         try {
@@ -277,7 +287,7 @@ public class ProximityKitPlugin extends CordovaPlugin implements ProximityKitNot
             beaconJSON.put(EVENT_BEACON_MINOR_KEY, beacon.getMinor());
             beaconJSON.put(EVENT_BEACON_RSSI_KEY, beacon.getRssi());
             beaconJSON.put(EVENT_BEACON_PROXIMITY_KEY, beacon.getProximity());
-            beaconJSON.put(EVENT_BEACON_ATTRIBUTES_KEY, new JSONObject(((PkIBeaconData) beaconData).getAttributes()));
+            beaconJSON.put(EVENT_BEACON_ATTRIBUTES_KEY, new JSONObject(((PkBeaconData) beaconData).getAttributes()));
         } catch (JSONException e) {
             // TODO Auto-generated catch block
             e.printStackTrace();
