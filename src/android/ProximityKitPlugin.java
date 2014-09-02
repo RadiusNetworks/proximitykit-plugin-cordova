@@ -229,6 +229,7 @@ public class ProximityKitPlugin extends CordovaPlugin implements ProximityKitMon
                                   DataProviderException e) {
         sendSuccessMessageToAllWatches(pluginResultDidRangeBeacon(Beacon, BeaconData));
     }
+    
     /*
     @override
     public void didRangeBeaconsInRegion() {
