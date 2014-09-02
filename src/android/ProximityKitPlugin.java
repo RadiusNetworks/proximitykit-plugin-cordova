@@ -12,10 +12,10 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
-import com.radiusnetworks.beacon.Beacon;
-import com.radiusnetworks.beacon.BeaconData;
-import com.radiusnetworks.beacon.Region;
-import com.radiusnetworks.beacon.client.DataProviderException;
+import org.altbeacon.beacon.Beacon;
+import org.altbeacon.beacon.BeaconData;
+import org.altbeacon.beacon.Region;
+import org.altbeacon.beacon.client.DataProviderException;
 
 import com.radiusnetworks.proximity.ProximityKitManager;
 import com.radiusnetworks.proximity.ProximityKitMonitorNotifier;
