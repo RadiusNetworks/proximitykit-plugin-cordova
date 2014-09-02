@@ -35,21 +35,21 @@ xmlns:android="http://schemas.android.com/apk/res/android">
         <uses-permission android:name="android.permission.RECEIVE_BOOT_COMPLETED"/>
     </config-file>
     <config-file target="AndroidManifest.xml" parent="/manifest/application">
-        <receiver android:name="com.radiusnetworks.proximity.ibeacon.startup.StartupBroadcastReceiver">
+        <receiver android:name="org.altbeacon.beacon.startup.StartupBroadcastReceiver">
             <intent-filter>
                 <action android:name="android.intent.action.BOOT_COMPLETED"/>
                 <action android:name="android.intent.action.ACTION_POWER_CONNECTED"/>
                 <action android:name="android.intent.action.ACTION_POWER_DISCONNECTED"/>
             </intent-filter>
         </receiver>
-        <service android:enabled="true" android:exported="true" android:isolatedProcess="false" android:label="iBeacon" android:name="com.radiusnetworks.ibeacon.service.IBeaconService">
+        <service android:enabled="true" android:exported="true" android:isolatedProcess="false" android:label="Beacon" android:name="org.altbeacon.beacon.service.BeaconService">
         </service>
 
-        <service android:enabled="true" android:name="com.radiusnetworks.ibeacon.IBeaconIntentProcessor">
+        <service android:enabled="true" android:name="org.altbeacon.beacon.BeaconIntentProcessor">
         </service>
     </config-file>
     <source-file src="src/android/ProximityKitPlugin.java" target-dir="src/com/radiusnetworks/cordova/proximitykit" />
-    <source-file src="src/android/AndroidIBeaconLibrary.jar" target-dir="libs" framework="true" />
-    <source-file src="src/android/AndroidProximityLibrary.jar" target-dir="libs" framework="true" />
+    <source-file src="src/android/android-beacon-library.jar" target-dir="libs" framework="true" />
+    <source-file src="src/android/proximitykit-android.jar" target-dir="libs" framework="true" />
   </platform>
 </plugin>
