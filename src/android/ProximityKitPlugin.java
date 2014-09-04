@@ -46,7 +46,6 @@ public class ProximityKitPlugin extends CordovaPlugin implements ProximityKitRan
     public static final String EVENT_REGION_MAJOR_KEY             = "major";
     public static final String EVENT_REGION_MINOR_KEY             = "minor";
     public static final String EVENT_REGION_IDENTIFIER_KEY        = "identifier";
-    public static final String EVENT_REGION_MANUFACTURER_KEY        = "manufacturer";
     public static final String EVENT_REGION_ATTRIBUTES_KEY        = "attributes";
     public static final String EVENT_REGION_STATE_KEY             = "state";
 
@@ -274,7 +273,6 @@ public class ProximityKitPlugin extends CordovaPlugin implements ProximityKitRan
             regionJSON.put(EVENT_REGION_UUID_KEY, region.getId1());
             regionJSON.put(EVENT_REGION_MAJOR_KEY, region.getId2());
             regionJSON.put(EVENT_REGION_MINOR_KEY, region.getId3());
-            regionJSON.put(EVENT_REGION_MANUFACTURER_KEY, region.getManufacturer());
         } catch (JSONException e) {
             // TODO Auto-generated catch block
             e.printStackTrace();
