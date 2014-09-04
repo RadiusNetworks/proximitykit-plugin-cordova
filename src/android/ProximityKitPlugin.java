@@ -46,6 +46,7 @@ public class ProximityKitPlugin extends CordovaPlugin implements ProximityKitRan
     public static final String EVENT_REGION_MAJOR_KEY             = "major";
     public static final String EVENT_REGION_MINOR_KEY             = "minor";
     public static final String EVENT_REGION_IDENTIFIER_KEY        = "identifier";
+    public static final String EVENT_REGION_MANUFACTURER_KEY        = "manufacturer";
     public static final String EVENT_REGION_ATTRIBUTES_KEY        = "attributes";
     public static final String EVENT_REGION_STATE_KEY             = "state";
 
@@ -58,6 +59,7 @@ public class ProximityKitPlugin extends CordovaPlugin implements ProximityKitRan
     public static final String EVENT_BEACON_RSSI_KEY              = "rssi";
     public static final String EVENT_BEACON_ATTRIBUTES_KEY        = "attributes";
     public static final String EVENT_BEACON_IDENTIFIER_KEY        = "identifier";
+    public static final String EVENT_BEACON_MANUFACTURER_KEY        = "manufacturer";
     //public static final String EVENT_BEACON_PROXIMITY_KEY         = "proximity";
 	//getProximity() removed in Android Beacon Lib, replace with getDistance()?
 	
@@ -272,7 +274,7 @@ public class ProximityKitPlugin extends CordovaPlugin implements ProximityKitRan
             regionJSON.put(EVENT_REGION_UUID_KEY, region.getId1());
             regionJSON.put(EVENT_REGION_MAJOR_KEY, region.getId2());
             regionJSON.put(EVENT_REGION_MINOR_KEY, region.getId3());
-            regionJSON.put(EVENT_REGION_IDENTIFIER_KEY, region.getIdentifier());
+            regionJSON.put(EVENT_REGION_MANUFACTURER_KEY, region.getManufacturer());
         } catch (JSONException e) {
             // TODO Auto-generated catch block
             e.printStackTrace();
@@ -289,9 +291,9 @@ public class ProximityKitPlugin extends CordovaPlugin implements ProximityKitRan
             beaconJSON.put(EVENT_BEACON_UUID_KEY, beacon.getId1());
             beaconJSON.put(EVENT_BEACON_MAJOR_KEY, beacon.getId2());
             beaconJSON.put(EVENT_BEACON_MINOR_KEY, beacon.getId3());
-            beaconJSON.put(EVENT_BEACON_IDENTIFIER_KEY, beacon.getIdentifier());
+            beaconJSON.put(EVENT_BEACON_MANUFACTURER_KEY, beacon.getManufacturer());
             beaconJSON.put(EVENT_BEACON_RSSI_KEY, beacon.getRssi());
-            beaconJSON.put(EVENT_BEACON_PROXIMITY_KEY, beacon.getProximity());
+            //beaconJSON.put(EVENT_BEACON_PROXIMITY_KEY, beacon.getProximity());
             beaconJSON.put(EVENT_BEACON_ATTRIBUTES_KEY, new JSONObject(((PkBeaconData) beaconData).getAttributes()));
         } catch (JSONException e) {
             // TODO Auto-generated catch block
