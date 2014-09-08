@@ -21,9 +21,11 @@ import com.radiusnetworks.proximity.ProximityKitManager;
 import com.radiusnetworks.proximity.ProximityKitMonitorNotifier;
 import com.radiusnetworks.proximity.ProximityKitRangeNotifier;
 import com.radiusnetworks.proximity.ProximityKitSyncNotifier;
+import com.radiusnetworks.proximity.ProximityKitBeacon;
 import com.radiusnetworks.proximity.ProximityKitBeaconRegion;
 import com.radiusnetworks.proximity.beacon.data.proximitykit.PkBeaconData;
 
+import java.util.Collection;
 import java.util.HashMap;
 import java.util.Iterator;
 import java.util.Map;
@@ -226,31 +228,28 @@ public class ProximityKitPlugin extends CordovaPlugin implements ProximityKitRan
 
     private static final String TAG = "ProximityKitPlugin";
 
-    @Override
-    public void BeaconDataUpdate(Beacon Beacon,
-                                  BeaconData BeaconData,
-                                  DataProviderException e) {
-        sendSuccessMessageToAllWatches(pluginResultDidRangeBeacon(Beacon, BeaconData));
+    //@Override
+    public void beaconDataUpdate(Beacon beacon, BeaconData beaconData, DataProviderException e) {
+        sendSuccessMessageToAllWatches(pluginResultDidRangeBeacon(beacon, beaconData));
     }
     
-    /*
     @Override
-    public void didRangeBeaconsInRegion() {
-    	
-    }*/
+    public void didRangeBeaconsInRegion(Collection<ProximityKitBeacon> beacons, ProximityKitBeaconRegion region) {
+    	Log.d(TAG, "didRangeBeaconsInRegion");
+    }
 
     @Override
-    public void didEnterRegion(Region region) {
+    public void didEnterRegion(ProximityKitBeaconRegion region) {
         sendSuccessMessageToAllWatches(pluginResultDidEnterRegion(region));
     }
 
     @Override
-    public void didExitRegion(Region region) {
+    public void didExitRegion(ProximityKitBeaconRegion region) {
         sendSuccessMessageToAllWatches(pluginResultDidExitRegion(region));
     }
 
     @Override
-    public void didDetermineStateForRegion(int state, Region region) {
+    public void didDetermineStateForRegion(int state, ProximityKitBeaconRegion region) {
         sendSuccessMessageToAllWatches(pluginResultDidDetermineState(state, region));
     }
 
