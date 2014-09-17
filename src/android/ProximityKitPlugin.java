@@ -68,16 +68,15 @@ public class ProximityKitPlugin extends CordovaPlugin implements ProximityKitRan
 
     public HashMap<String, CallbackContext> watches = new HashMap<String, CallbackContext>();
     private boolean running = false;
-
+    private ProximityKitCordovaApplication application;
+    
     @Override
     public void initialize(CordovaInterface cordova, CordovaWebView webView)
     {
         super.initialize(cordova, webView);
-        pkManager = ProximityKitManager.getInstanceForApplication(cordova.getActivity().getApplicationContext());
-        pkManager.setProximityKitSyncNotifier(this);
-        pkManager.setProximityKitMonitorNotifier(this);
-        pkManager.setProximityKitRangeNotifier(this);
-    	pkManager.getBeaconManager().setDebug(true);
+        application = (ProximityKitCordovaApplication)cordova.getActivity().getApplicationContext();
+        application.setPkPlugin(this);
+        pkManager = application.getProximityKitManager();
     }
 
     @Override
@@ -114,9 +113,6 @@ public class ProximityKitPlugin extends CordovaPlugin implements ProximityKitRan
 
     private void addWatch(String timerId, CallbackContext callbackContext) {
         watches.put(timerId, callbackContext);
-        if (watches.size() == 1) {
-            start();
-        }
     }
 
     private void removeWatch(String timerId) {
