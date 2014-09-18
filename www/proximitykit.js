@@ -30,7 +30,9 @@ var proximitykit =
     },
 
     watchProximity: function(success, error) {
-        exec(success, error, pluginClass, "watchProximity", [utils.createUUID()]);
+        var watchId = utils.createUUID();
+        exec(success, error, pluginClass, "watchProximity", [watchId]);
+        return watchId;        
     },
 
     clearWatch: function(watchId) {
