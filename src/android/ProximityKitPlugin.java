@@ -40,7 +40,7 @@ public class ProximityKitPlugin extends CordovaPlugin implements ProximityKitRan
     public static final String EVENT_TYPE_ENTERED_REGION          = "didEnterRegion";
     public static final String EVENT_TYPE_EXITED_REGION           = "didExitRegion";
     public static final String EVENT_TYPE_DETERMINED_REGION_STATE = "didDetermineState";
-    public static final String EVENT_TYPE_RANGED_BEACON           = "didRangeBeacon";
+    public static final String EVENT_TYPE_RANGED_BEACONS           = "didRangeBeacons";
 
     public static final String EVENT_REGION_KEY                   = "region";
     public static final String EVENT_REGION_NAME_KEY              = "name";
@@ -61,8 +61,7 @@ public class ProximityKitPlugin extends CordovaPlugin implements ProximityKitRan
     public static final String EVENT_BEACON_ATTRIBUTES_KEY        = "attributes";
     public static final String EVENT_BEACON_IDENTIFIER_KEY        = "identifier";
     public static final String EVENT_BEACON_MANUFACTURER_KEY        = "manufacturer";
-    //public static final String EVENT_BEACON_PROXIMITY_KEY         = "proximity";
-	//getProximity() removed in Android Beacon Lib, replace with getDistance()?
+    public static final String EVENT_BEACON_DISTANCE_KEY         = "distance";
 	
     private static ProximityKitManager pkManager;
 
@@ -83,7 +82,7 @@ public class ProximityKitPlugin extends CordovaPlugin implements ProximityKitRan
     public void onDestroy()
     {
         super.onDestroy();
-//        pkManager.stop();
+        pkManager.stop();
     }
 
     @Override
@@ -148,7 +147,7 @@ public class ProximityKitPlugin extends CordovaPlugin implements ProximityKitRan
 
     private void stop() {
         if (running) {
-//            pkManager.stop();
+            pkManager.stop();
             running = false;
         }
     }
@@ -209,11 +208,13 @@ public class ProximityKitPlugin extends CordovaPlugin implements ProximityKitRan
         return o;
     }
 
-    public JSONObject pluginResultDidRangeBeacon(Beacon beacon, BeaconData beaconData) {
+    public JSONObject pluginResultDidRangeBeacons(Collection<ProximityKitBeacon> beacons, ProximityKitBeaconRegion region) {
         JSONObject o = new JSONObject();
         try {
-            o.put(EVENT_TYPE_KEY, EVENT_TYPE_RANGED_BEACON);
-            o.put(EVENT_BEACON_KEY, toJSON(beacon, beaconData));
+            o.put(EVENT_TYPE_KEY, EVENT_TYPE_RANGED_BEACONS);
+            for (ProximityKitBeacon beacon : beacons) {
+            	o.put(EVENT_BEACON_KEY, toJSON(beacon, region));
+        	}
         } catch (JSONException e) {
             // TODO Auto-generated catch block
             e.printStackTrace();
@@ -223,15 +224,10 @@ public class ProximityKitPlugin extends CordovaPlugin implements ProximityKitRan
     }
 
     private static final String TAG = "ProximityKitPlugin";
-
-    //@Override
-    public void beaconDataUpdate(Beacon beacon, BeaconData beaconData, DataProviderException e) {
-        sendSuccessMessageToAllWatches(pluginResultDidRangeBeacon(beacon, beaconData));
-    }
     
     @Override
     public void didRangeBeaconsInRegion(Collection<ProximityKitBeacon> beacons, ProximityKitBeaconRegion region) {
-    	Log.d(TAG, "didRangeBeaconsInRegion");
+        sendSuccessMessageToAllWatches(pluginResultDidRangeBeacons(beacons, region));
     }
 
     @Override
@@ -264,10 +260,11 @@ public class ProximityKitPlugin extends CordovaPlugin implements ProximityKitRan
     private JSONObject toJSON(Region region)
     {
         JSONObject regionJSON = new JSONObject();
-        try {
+        try {        
             regionJSON.put(EVENT_REGION_UUID_KEY, region.getId1());
             regionJSON.put(EVENT_REGION_MAJOR_KEY, region.getId2());
             regionJSON.put(EVENT_REGION_MINOR_KEY, region.getId3());
+            regionJSON.put(EVENT_REGION_ATTRIBUTES_KEY, new JSONObject(region.getAttributes()));
         } catch (JSONException e) {
             // TODO Auto-generated catch block
             e.printStackTrace();
@@ -276,18 +273,17 @@ public class ProximityKitPlugin extends CordovaPlugin implements ProximityKitRan
         return regionJSON;
     }
 
-    private JSONObject toJSON(Beacon beacon,
-                              BeaconData beaconData)
+    private JSONObject toJSON(ProximityKitBeacon beacon, ProximityKitBeaconRegion region)
     {
         JSONObject beaconJSON = new JSONObject();
-        try {
+        try {        
             beaconJSON.put(EVENT_BEACON_UUID_KEY, beacon.getId1());
             beaconJSON.put(EVENT_BEACON_MAJOR_KEY, beacon.getId2());
             beaconJSON.put(EVENT_BEACON_MINOR_KEY, beacon.getId3());
             beaconJSON.put(EVENT_BEACON_MANUFACTURER_KEY, beacon.getManufacturer());
             beaconJSON.put(EVENT_BEACON_RSSI_KEY, beacon.getRssi());
-            //beaconJSON.put(EVENT_BEACON_PROXIMITY_KEY, beacon.getProximity());
-            beaconJSON.put(EVENT_BEACON_ATTRIBUTES_KEY, new JSONObject(((PkBeaconData) beaconData).getAttributes()));
+            beaconJSON.put(EVENT_BEACON_DISTANCE_KEY, beacon.getDistance());
+            beaconJSON.put(EVENT_BEACON_ATTRIBUTES_KEY, new JSONObject(beacon.getAttributes()));
         } catch (JSONException e) {
             // TODO Auto-generated catch block
             e.printStackTrace();

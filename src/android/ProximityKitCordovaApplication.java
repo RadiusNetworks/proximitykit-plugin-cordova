@@ -81,6 +81,7 @@ public class ProximityKitCordovaApplication extends Application implements Proxi
     @Override
     public void didFailSync(Exception e)
     {
+    	Log.d(TAG, "didFailSync");
     	if (pkPlugin != null) {
     		pkPlugin.didFailSync( e);
     	}
