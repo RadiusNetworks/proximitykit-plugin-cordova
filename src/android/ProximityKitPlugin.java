@@ -82,7 +82,13 @@ public class ProximityKitPlugin extends CordovaPlugin implements ProximityKitRan
     public void onDestroy()
     {
         super.onDestroy();
-        pkManager.stop();
+/*  [javac] /Users/James/Documents/_Radius/Cordova/hello-proximity-cordova/platforms/android/src/com/radiusnetworks/cordova/proximitykit/ProximityKitPlugin.java:85: error: cannot find symbol
+    [javac]         pkManager.stop();
+    [javac]                  ^
+    [javac]   symbol:   method stop()
+    [javac]   location: variable pkManager of type ProximityKitManager
+*/
+//        pkManager.stop();
     }
 
     @Override
@@ -147,7 +153,7 @@ public class ProximityKitPlugin extends CordovaPlugin implements ProximityKitRan
 
     private void stop() {
         if (running) {
-            pkManager.stop();
+//            pkManager.stop();
             running = false;
         }
     }
@@ -264,7 +270,7 @@ public class ProximityKitPlugin extends CordovaPlugin implements ProximityKitRan
             regionJSON.put(EVENT_REGION_UUID_KEY, region.getId1());
             regionJSON.put(EVENT_REGION_MAJOR_KEY, region.getId2());
             regionJSON.put(EVENT_REGION_MINOR_KEY, region.getId3());
-            regionJSON.put(EVENT_REGION_ATTRIBUTES_KEY, new JSONObject(region.getAttributes()));
+            //regionJSON.put(EVENT_REGION_ATTRIBUTES_KEY, new JSONObject(region.getAttributes()));
         } catch (JSONException e) {
             // TODO Auto-generated catch block
             e.printStackTrace();
