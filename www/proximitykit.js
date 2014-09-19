@@ -36,7 +36,7 @@ var proximitykit =
     },
 
     clearWatch: function(watchId) {
-        exec(success, error, pluginClass, "clearWatch", [watchId]);
+        exec(null, null, pluginClass, "clearWatch", [watchId]);
     }
 };
 
