@@ -21,6 +21,10 @@ This will add the plugin to your project's `config.xml` file and will copy vario
 
 Adding the plugin will also modify your `AndroidManifest.xml` if you are building for Android.  Please do not remove the `<service>`, `<receiver>`, and `<uses-permission>` elements that are added to this file or the plugin will not work properly.
 
+To properly implement the application subclass that initiates the beacon monitoring, make sure the `AndroidManifest.xml` file includes the proper `android:name` tag under `application` for the `ProximityKitCordovaAppication` class:
+
+    <application android:name="com.radiusnetworks.cordova.proximitykit.ProximityKitCordovaApplication" android:hardwareAccelerated="true" android:icon="@drawable/icon" android:label="@string/app_name">
+
 ProximityKit Integration
 ---
 In order to provide the necessary ProximityKit configuration data to the native apps, download the `ProximityKit.plist` (for iOS) and/or `ProximityKit.properties` (for Android) for your kit.  These files need to be in the following location within your project depending on the platform being built:
