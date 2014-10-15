@@ -82,13 +82,7 @@ public class ProximityKitPlugin extends CordovaPlugin implements ProximityKitRan
     public void onDestroy()
     {
         super.onDestroy();
-/*  [javac] /Users/James/Documents/_Radius/Cordova/hello-proximity-cordova/platforms/android/src/com/radiusnetworks/cordova/proximitykit/ProximityKitPlugin.java:85: error: cannot find symbol
-    [javac]         pkManager.stop();
-    [javac]                  ^
-    [javac]   symbol:   method stop()
-    [javac]   location: variable pkManager of type ProximityKitManager
-*/
-//        pkManager.stop();
+        pkManager.stop();
     }
 
     @Override
@@ -153,7 +147,7 @@ public class ProximityKitPlugin extends CordovaPlugin implements ProximityKitRan
 
     private void stop() {
         if (running) {
-//            pkManager.stop();
+            pkManager.stop();
             running = false;
         }
     }
