@@ -47,7 +47,7 @@ In order to provide the necessary ProximityKit configuration data to the native 
 In addition to placing the `ProximityKit.plist` file inside the iOS project's directory structure, you need to add the file to the Xcode project and to the appropriate target:
 
 1. Open the project in Xcode
-2. Select the App's target and select "Add Files to \"...\" from the File menu.
+2. Select the App's target and select "Add Files to "..." from the File menu.
 3. Locate your ProximityKit.plist file and click "Add"
 
 
