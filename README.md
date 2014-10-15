@@ -3,8 +3,6 @@ ProximityKit Plugin for Cordova/PhoneGap
 
 Last Updated 11-July-2014
 
-Michael Harper (michael@radiusnetworks.com)
-
 Installation
 ------------
 The plugin is distributed via Github.
@@ -128,3 +126,8 @@ $ cordova plugin rm com.radiusnetworks.cordova.proximitykit
 ```
 
 You may also delete the `ProximityKit.plist` and/or `ProximityKit.properties` file(s) from your project directory (and your Xcode project on iOS).
+
+Support
+-------
+
+For support questions or other concerns, email support@radiusnetworks.com
