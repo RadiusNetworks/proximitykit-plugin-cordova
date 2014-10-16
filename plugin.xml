@@ -1,5 +1,5 @@
 <?xml version='1.0' encoding='utf-8'?>
-<plugin id="com.radiusnetworks.cordova.proximitykit" version="0.5.2"
+<plugin id="com.radiusnetworks.cordova.proximitykit" version="0.5.1"
 xmlns="http://apache.org/cordova/ns/plugins/1.0"
 xmlns:android="http://schemas.android.com/apk/res/android">
   <name>ProximityKit</name>
@@ -10,11 +10,47 @@ xmlns:android="http://schemas.android.com/apk/res/android">
     </js-module>
     <config-file parent="/*" target="config.xml">
       <feature name="ProximityKit">
-        <param name="ios-package" value="PKCDVPlugin" />
+        <param name="ios-package" value="RPKCDVPlugin" />
       </feature>
     </config-file>
-    <header-file src="src/ios/PKCDVPlugin.h" />
-    <source-file src="src/ios/PKCDVPlugin.m" />
+    <header-file src="src/ios/RPKCDVPlugin.h" />
+    <source-file src="src/ios/RPKCDVPlugin.m" />
     <framework src="src/ios/ProximityKit.framework" custom="true" />
+  </platform>
+  <platform name="android">
+      <js-module name="proximitykit" src="www/proximitykit.js">
+          <clobbers target="radiusnetworks.plugins.proximitykit" />
+      </js-module>
+    <config-file parent="/*" target="res/xml/config.xml">
+      <feature name="ProximityKit">
+        <param name="android-package" value="com.radiusnetworks.cordova.proximitykit.ProximityKitPlugin" />
+      </feature>
+    </config-file>
+    <config-file target="AndroidManifest.xml" parent="/*">
+        <uses-permission android:name="android.permission.BLUETOOTH"/>
+        <uses-permission android:name="android.permission.BLUETOOTH_ADMIN"/>
+        <uses-permission android:name="android.permission.INTERNET"/>
+        <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION"/>
+        <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"/>
+        <uses-permission android:name="android.permission.RECEIVE_BOOT_COMPLETED"/>
+    </config-file>
+    <config-file target="AndroidManifest.xml" parent="/manifest/application">
+        <receiver android:name="org.altbeacon.beacon.startup.StartupBroadcastReceiver">
+            <intent-filter>
+                <action android:name="android.intent.action.BOOT_COMPLETED"/>
+                <action android:name="android.intent.action.ACTION_POWER_CONNECTED"/>
+                <action android:name="android.intent.action.ACTION_POWER_DISCONNECTED"/>
+            </intent-filter>
+        </receiver>
+        <service android:enabled="true" android:exported="true" android:isolatedProcess="false" android:label="Beacon" android:name="org.altbeacon.beacon.service.BeaconService">
+        </service>
+
+        <service android:enabled="true" android:name="org.altbeacon.beacon.BeaconIntentProcessor">
+        </service>
+    </config-file>
+    <source-file src="src/android/ProximityKitPlugin.java" target-dir="src/com/radiusnetworks/cordova/proximitykit" />
+    <source-file src="src/android/ProximityKitCordovaApplication.java" target-dir="src/com/radiusnetworks/cordova/proximitykit" />
+    <source-file src="src/android/android-beacon-library.jar" target-dir="libs" framework="true" />
+    <source-file src="src/android/proximitykit-android.jar" target-dir="libs" framework="true" />
   </platform>
 </plugin>

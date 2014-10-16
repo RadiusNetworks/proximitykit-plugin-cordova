@@ -1,9 +1,7 @@
 ProximityKit Plugin for Cordova/PhoneGap
 ========================================
 
-Last Updated 14-July-2014
-
-Michael Harper (michael@radiusnetworks.com)
+Last Updated 15-October-2014
 
 Installation
 ------------
@@ -17,17 +15,41 @@ $ cordova plugin add https://github.com/RadiusNetworks/proximitykit-plugin-cordo
 
 This will add the plugin to your project's `config.xml` file and will copy various files into the native `src` directory for your platforms.
 
+### iOS only
+
+For iOS, Proximity Kit uses SQLite internally but just needs the default library included on iOS. So you need to link to it in the project in Xcode manually after the app is built in Cordova/PhoneGap.  To do this, open the generated Xcode project found under `platforms`/`ios` and follow these steps:
+
+1. Select the App's target in Xcode
+1. Choose "Build Phases"
+1. Under the "Link Binary With Libraries" section click the '+' to add another library
+1. Choose libsqlite3.dylib and click "Add"
+
+### Android only
+
+To properly implement the custom application subclass that initiates the beacon monitoring, edit the `AndroidManifest.xml` file (`platforms`/`android`/`AndroidManifest.xml`) to include the proper `android:name` tag under `application` for the `ProximityKitCordovaAppication` class.  The application header should look like this:
+
+    <application android:name="com.radiusnetworks.cordova.proximitykit.ProximityKitCordovaApplication" android:hardwareAccelerated="true" android:icon="@drawable/icon" android:label="@string/app_name">
+
+Adding the plugin will also modify other parts of your `AndroidManifest.xml` automatically.  Please do not remove the `<service>`, `<receiver>`, and `<uses-permission>` elements that are added to this file or the plugin will not work properly.
+
+
 ProximityKit Integration
 ---
-In order to provide the necessary ProximityKit configuration data to the native apps, download the `ProximityKit.plist` (for iOS) for your kit.  These files need to be in the following location within your project depending on the platform being built:
+In order to provide the necessary ProximityKit configuration data to the native apps, download the `ProximityKit.plist` (for iOS) and/or `ProximityKit.properties` (for Android) for your kit.  These files need to be in the following location within your project depending on the platform being built:
 
 | Platform | Location of ProximityKit configuration file         |
 |:---------|:----------------------------------------------------|
 | iOS      | `./platforms/ios/<Project Name>/ProximityKit.plist` |
+| Android  | `./platforms/android/src/ProximityKit.properties`   |
 
 ### iOS only
 
-In addition to placing the `ProximityKit.plist` file inside the iOS project's directory structure, you need to add the file to the Xcode project and to the appropriate target.
+In addition to placing the `ProximityKit.plist` file inside the iOS project's directory structure, you need to add the file to the Xcode project and to the appropriate target:
+
+1. Open the project in Xcode
+2. Select the App's target and select "Add Files to "..." from the File menu.
+3. Locate your ProximityKit.plist file and click "Add"
+
 
 Usage
 -----
@@ -80,6 +102,7 @@ Additional data:
 |`beacon`           | Beacon data                                              |
 
 
+
 ### `clearWatch(watchId)`
 
 Cancels callbacks from ProximityKit.  This method should be called with a `watchId` previously returned by a call to `watchProximity`.
@@ -117,4 +140,9 @@ To remove the plugin from your project, run the following command:
 $ cordova plugin rm com.radiusnetworks.cordova.proximitykit
 ```
 
-You may also delete the `ProximityKit.plist` file from your project directory (and your Xcode project on iOS).
+You may also delete the `ProximityKit.plist` and/or `ProximityKit.properties` file(s) from your project directory (and your Xcode project on iOS).
+
+Support
+-------
+
+For support questions or other concerns, email support@radiusnetworks.com
