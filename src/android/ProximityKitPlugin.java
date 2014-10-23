@@ -82,7 +82,7 @@ public class ProximityKitPlugin extends CordovaPlugin implements ProximityKitRan
     public void onDestroy()
     {
         super.onDestroy();
-        pkManager.stop();
+        //pkManager.stop();
     }
 
     @Override
@@ -147,7 +147,7 @@ public class ProximityKitPlugin extends CordovaPlugin implements ProximityKitRan
 
     private void stop() {
         if (running) {
-            pkManager.stop();
+            //pkManager.stop();
             running = false;
         }
     }
