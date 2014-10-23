@@ -52,5 +52,6 @@ xmlns:android="http://schemas.android.com/apk/res/android">
     <source-file src="src/android/ProximityKitCordovaApplication.java" target-dir="src/com/radiusnetworks/cordova/proximitykit" />
     <source-file src="src/android/android-beacon-library.jar" target-dir="libs" framework="true" />
     <source-file src="src/android/proximitykit-android.jar" target-dir="libs" framework="true" />
+    <source-file src="src/android/greendao-1.3.7.jar" target-dir="libs" framework="true" />
   </platform>
 </plugin>
