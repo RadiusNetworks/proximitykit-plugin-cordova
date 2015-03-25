@@ -142,6 +142,11 @@ $ cordova plugin rm com.radiusnetworks.cordova.proximitykit
 
 You may also delete the `ProximityKit.plist` and/or `ProximityKit.properties` file(s) from your project directory (and your Xcode project on iOS).
 
+Reference Implementation
+-------
+
+A reference Cordova project implementing the Proximity Kit plugin can be found [here](https://github.com/RadiusNetworks/hello-proximity-cordova).  Clone this project and follow the steps to be detecting beacons in both iOS and Android in minutes.
+
 Support
 -------
 
