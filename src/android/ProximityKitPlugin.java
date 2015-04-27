@@ -40,7 +40,7 @@ public class ProximityKitPlugin extends CordovaPlugin implements ProximityKitRan
     public static final String EVENT_TYPE_ENTERED_REGION          = "didEnterRegion";
     public static final String EVENT_TYPE_EXITED_REGION           = "didExitRegion";
     public static final String EVENT_TYPE_DETERMINED_REGION_STATE = "didDetermineState";
-    public static final String EVENT_TYPE_RANGED_BEACONS           = "didRangeBeacons";
+    public static final String EVENT_TYPE_RANGED_BEACONS           = "didRangeBeacon";
 
     public static final String EVENT_REGION_KEY                   = "region";
     public static final String EVENT_REGION_NAME_KEY              = "name";
