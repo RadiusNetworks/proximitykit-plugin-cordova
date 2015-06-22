@@ -67,7 +67,7 @@ NSString * const RPKCDVEventBeaconAttributesKey       = @"attributes";
 @interface RPKCDVPlugin ()
 
 @property (strong, nonatomic) RPKManager *proximityKitManager;
-@property (strong, nonatomic) NSMutableSet* watchCallbacks;
+@property (strong, nonatomic) NSMutableDictionary* watchCallbacks;
 
 @end
 
@@ -79,7 +79,7 @@ NSString * const RPKCDVEventBeaconAttributesKey       = @"attributes";
   if (self) {
     self.proximityKitManager = [RPKManager managerWithDelegate:self];
     [self.proximityKitManager start];
-    self.watchCallbacks = [[NSMutableSet alloc] init];
+    self.watchCallbacks = [[NSMutableDictionary alloc] init];
   }
   return self;
 }
@@ -94,12 +94,12 @@ NSString * const RPKCDVEventBeaconAttributesKey       = @"attributes";
 
 - (void)watchProximity:(CDVInvokedUrlCommand*)command
 {
-  [self.watchCallbacks addObject:command.callbackId];
+  [self.watchCallbacks setObject:command.callbackId forKey:command.arguments[0]];
 }
 
 - (void)clearWatch:(CDVInvokedUrlCommand*)command;
 {
-  [self.watchCallbacks removeObject:command.callbackId];
+  [self.watchCallbacks removeObjectForKey:command.arguments[0]];
 }
 
 - (void)onReset
@@ -118,7 +118,7 @@ NSString * const RPKCDVEventBeaconAttributesKey       = @"attributes";
 - (void)proximityKit:(RPKManager *)manager didFailWithError:(NSError *)error
 {
   NSLog(@"didFailWithError %@", error);
-  for (NSString *callbackId in self.watchCallbacks)
+  for (NSString *callbackId in self.watchCallbacks.allValues)
   {
   	CDVPluginResult *result = [CDVPluginResult resultWithStatus:CDVCommandStatus_ERROR messageAsString:[error localizedDescription]];
   	[result setKeepCallbackAsBool:YES];
@@ -152,7 +152,7 @@ NSString * const RPKCDVEventBeaconAttributesKey       = @"attributes";
   {
     CDVPluginResult *result = [CDVPluginResult resultWithStatus:CDVCommandStatus_OK messageAsDictionary:[self pluginResultDidRangeBeacon:beacon]];
     [result setKeepCallbackAsBool:YES];
-    for (NSString *callbackId in self.watchCallbacks)
+    for (NSString *callbackId in self.watchCallbacks.allValues)
     {
       [self.commandDelegate sendPluginResult:result callbackId:callbackId];
     }
@@ -163,7 +163,7 @@ NSString * const RPKCDVEventBeaconAttributesKey       = @"attributes";
 
 -(void) sendSuccessMessageToAllWatches:(NSDictionary *) message
 {
-  for (NSString *callbackId in self.watchCallbacks)
+  for (NSString *callbackId in self.watchCallbacks.allValues)
   {
   	CDVPluginResult *result = [CDVPluginResult resultWithStatus:CDVCommandStatus_OK messageAsDictionary:message];
   	[result setKeepCallbackAsBool:YES];
