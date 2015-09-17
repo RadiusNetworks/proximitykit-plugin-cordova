@@ -50,6 +50,10 @@ In addition to placing the `ProximityKit.plist` file inside the iOS project's di
 2. Select the App's target and select "Add Files to "..." from the File menu.
 3. Locate your ProximityKit.plist file and click "Add"
 
+Lastly, in order to use Location Services with iOS 8 you will need to add a 'NSLocationAlwaysUsageDescription' string to the 'Info.plist' file in your iOS app.  Without this, your device will not send beacon information to your app.  The screenshot below shows an example of this:
+
+<img src='http://i.imgur.com/7Q6MDlH.png'>
+
 
 Usage
 -----
