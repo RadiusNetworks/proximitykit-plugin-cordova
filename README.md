@@ -1,7 +1,7 @@
 ProximityKit Plugin for Cordova/PhoneGap
 ========================================
 
-Last Updated 15-October-2014
+Last Updated 28-September-2015
 
 Installation
 ------------
@@ -14,15 +14,6 @@ $ cordova plugin add https://github.com/RadiusNetworks/proximitykit-plugin-cordo
 ```
 
 This will add the plugin to your project's `config.xml` file and will copy various files into the native `src` directory for your platforms.
-
-### iOS only
-
-For iOS, Proximity Kit uses SQLite internally but just needs the default library included on iOS. So you need to link to it in the project in Xcode manually after the app is built in Cordova/PhoneGap.  To do this, open the generated Xcode project found under `platforms`/`ios` and follow these steps:
-
-1. Select the App's target in Xcode
-1. Choose "Build Phases"
-1. Under the "Link Binary With Libraries" section click the '+' to add another library
-1. Choose libsqlite3.dylib and click "Add"
 
 ### Android only
 
