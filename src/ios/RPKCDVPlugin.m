@@ -53,9 +53,9 @@ NSString * const RPKCDVEventBeaconAttributesKey       = @"attributes";
 {
   return @{
            RPKCDVEventBeaconUUIDKey: [self.uuid UUIDString],
-           RPKCDVEventBeaconMajorKey: @(self.major),
-           RPKCDVEventBeaconMinorKey: @(self.minor),
-           RPKCDVEventBeaconRSSIKey: @(self.rssi),
+           RPKCDVEventBeaconMajorKey: self.major,
+           RPKCDVEventBeaconMinorKey: self.minor,
+           RPKCDVEventBeaconRSSIKey: self.rssi,
            RPKCDVEventBeaconProximityKey: @(self.proximity),
            RPKCDVEventBeaconAttributesKey: self.attributes
            };
