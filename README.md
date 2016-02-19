@@ -1,7 +1,7 @@
 ProximityKit Plugin for Cordova/PhoneGap
 ========================================
 
-Last Updated 28-September-2015
+Last Updated 19-February-2016
 
 Installation
 ------------
