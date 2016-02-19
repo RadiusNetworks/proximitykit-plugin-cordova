@@ -73,15 +73,11 @@ NSString * const RPKCDVEventBeaconAttributesKey       = @"attributes";
 
 @implementation RPKCDVPlugin
 
--(CDVPlugin *) initWithWebView:(UIWebView *) theWebView
+- (void)pluginInitialize
 {
-  self = [super initWithWebView:(UIWebView *) theWebView];
-  if (self) {
-    self.proximityKitManager = [RPKManager managerWithDelegate:self];
-    [self.proximityKitManager start];
-    self.watchCallbacks = [[NSMutableDictionary alloc] init];
-  }
-  return self;
+  self.proximityKitManager = [RPKManager managerWithDelegate:self];
+  [self.proximityKitManager start];
+  self.watchCallbacks = [[NSMutableDictionary alloc] init];
 }
 
 - (void)dealloc
